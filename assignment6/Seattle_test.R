@@ -32,7 +32,7 @@ data_cleaning <- function(data, factors){
   return(data)
 }
 allocate_maps <- function(){
-  register_google(key="AIzaSyChqgC6g-pMlpbZxR4yxIIVzAlAiijSHmY")
+  register_google(key="enter_key_here")
   Seattle = qmap("Seattle", zoom = 11,
                  source="stamen", maptype="toner", darken = c(.3,"#BBBBBB"))
   UDistrict = qmap("University District, Seattle", zoom = 14, 
@@ -128,12 +128,12 @@ a <- seattle_clean %>%
 #Seleziono i 6 reati in maggior numero totale
 top_off <- c('ASSAULT', 'BURGLARY', 'CAR PROWL', 'OTHER PROPERTY', 'PROPERTY DAMAGE', 'VEHICLE THEFT')
 
-#andamento orario dei 6 reati più comuni
+#andamento orario dei 6 reati piÃ¹ comuni
 ggplot(a[a$Offense %in% top_off, ], aes(x=TimeStart, y=N_Offense_Per_Time, color=Offense))+
   geom_point()+geom_line(aes(group=Offense))
 
 
-## Tabella con densità di reato di Car Prowl e Vehicle Theft per zona
+## Tabella con densitÃ  di reato di Car Prowl e Vehicle Theft per zona
 zone_of_offense <- seattle_clean %>% 
   filter(Offense=='CAR PROWL' | Offense=='VEHICLE THEFT')%>% 
   select(District, Zone, Offense, Longitude, Latitude)
